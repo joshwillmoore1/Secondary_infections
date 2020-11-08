@@ -57,8 +57,6 @@ for l=1:length(I)
             p3(i,:)=min(ones(1,N),abs(Mean_probs(i)+Sd(i)*randn(1,N))); % Probability of secondary infection.
         end
         
-
-        
         p2p3=sum(p2.*p3); % Average number of infected inhibitants assuming additional infected occupant.
         
         Noi=p1.*p2p3; % Average number of secondary infections in each household.
