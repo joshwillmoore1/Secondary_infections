@@ -90,9 +90,9 @@ ui <- fluidPage(
       "Man_prev",
       "Percentage prevalence, I (%):",
       min = 0,
-      max = 100,
+      max = 50,
       value = 20,
-      step = 1
+      step = 0.5
     )
     
   )),
@@ -243,6 +243,12 @@ server <- function(input, output, session) {
         new_data[i, j] <- temp
         
       }
+    }
+    
+      #catch if the sum of household prob. are greater than 1
+    if (sum(test_data[1, ]) >1){
+      new_data[1,] <-def_data[1,]
+      output$Data_warning<-renderText("WARNING: INVALID INPUT DATA - SUM OF HOUSEHOLD SIZE PROBABILITIES SHOULD BE ≤ 1")
     }
     
     if (identical(test_data, new_data)) {
